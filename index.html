@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osvaldine ❤️</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffd1dc);
+  background-size:400% 400%;
+  animation:bgMove 15s ease infinite;
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  overflow:hidden;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.card{
+  background:rgba(255,255,255,0.97);
+  color:#444;
+  padding:25px;
+  border-radius:30px;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 0 50px rgba(233,30,99,.8);
+  animation:heartbeat 2s infinite, unblur 6s forwards;
+  filter:blur(6px);
+}
+
+@keyframes unblur{to{filter:blur(0)}}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+
+h1{
+  color:#e91e63;
+  margin-bottom:15px;
+  font-size:clamp(24px,6vw,30px);
+}
+
+#text{
+  white-space:pre-line;
+  font-size:clamp(14px,4vw,16px);
+  line-height:1.9;
+  min-height:280px;
+}
+
+button{
+  margin-top:20px;
+  padding:14px 30px;
+  border:none;
+  border-radius:40px;
+  background:#e91e63;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 rgba(233,30,99,.7)}
+  70%{box-shadow:0 0 20px rgba(233,30,99,.9)}
+  100%{box-shadow:0 0 0 rgba(233,30,99,.7)}
+}
+
+.fall{
+  position:absolute;
+  font-size:18px;
+  animation:fall linear infinite;
+  opacity:.8;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4b0d6b5c2f.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Osvaldine ❤️</h1>
+  <div id="text"></div>
+  <button onclick="finalLove()">Tu me pardonnes ? 💖</button>
+</div>
+
+<script>
+const message=`Bon, peut-être que je vais me répéter, mais je veux te redemander pardon.
+Je ne voulais jamais te faire de mal, et je regrette profondément de t’avoir fait pleurer.
+Tu ne mérites pas de souffrir, encore moins de la part de celui qui t’aime… moi.
+
+Pardon pour tout, Osvaldine.
+J’ai pensé à partir pour te laisser et te permettre de faire ta vie,
+mais je pense que ce serait la pire erreur de ma vie,
+parce que je ne me vois pas avec une autre fille que toi.
+Je ne me vois pas sans toi.
+
+Donne-moi une seule chance de te prouver que je ne serai pas celui qui te fera souffrir.`;
+
+let i=0;
+function typeText(){
+  if(i<message.length){
+    document.getElementById("text").innerHTML+=message.charAt(i);
+    i++;
+    setTimeout(typeText, message.charAt(i)==="\n"?500:35);
+  }
+}
+typeText();
+
+function createFall(){
+  const el=document.createElement("div");
+  el.className="fall";
+  el.innerHTML=Math.random()>0.5?"❤️":"💖";
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+setInterval(createFall,250);
+
+function finalLove(){
+  alert("Osvaldine… je t’aime MyOne ❤️");
+}
+</script>
+
+</body>
+</html>
